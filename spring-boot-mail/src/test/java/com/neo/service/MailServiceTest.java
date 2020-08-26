@@ -22,24 +22,24 @@ public class MailServiceTest {
     private TemplateEngine templateEngine;
 
     @Test
-    public void testSimpleMail() throws Exception {
-        mailService.sendSimpleMail("ityouknow@126.com","test simple mail"," hello this is simple mail");
+    public void testSimpleMail(){
+        mailService.sendSimpleMail("willdawnup@gmail.com","test simple mail"," hello this is simple mail");
     }
 
     @Test
-    public void testHtmlMail() throws Exception {
+    public void testHtmlMail(){
         String content="<html>\n" +
                 "<body>\n" +
                 "    <h3>hello world ! 这是一封html邮件!</h3>\n" +
                 "</body>\n" +
                 "</html>";
-        mailService.sendHtmlMail("ityouknow@126.com","test simple mail",content);
+        mailService.sendHtmlMail("willdawnup@gmail.com","test simple mail",content);
     }
 
     @Test
     public void sendAttachmentsMail() {
-        String filePath="e:\\tmp\\application.log";
-        mailService.sendAttachmentsMail("ityouknow@126.com", "主题：带附件的邮件", "有附件，请查收！", filePath);
+        String filePath="test.txt";
+        mailService.sendAttachmentsMail("willdawnup@gmail.com", "主题：带附件的邮件", "有附件，请查收！", filePath);
     }
 
 
@@ -47,9 +47,9 @@ public class MailServiceTest {
     public void sendInlineResourceMail() {
         String rscId = "neo006";
         String content="<html><body>这是有图片的邮件：<img src=\'cid:" + rscId + "\' ></body></html>";
-        String imgPath = "C:\\Users\\summer\\Pictures\\favicon.png";
+        String imgPath = "src/test/resources/ninja.jpg";
 
-        mailService.sendInlineResourceMail("ityouknow@126.com", "主题：这是有图片的邮件", content, imgPath, rscId);
+        mailService.sendInlineResourceMail("willdawnup@gmail.com", "主题：这是有图片的邮件", content, imgPath, rscId);
     }
 
 
@@ -60,6 +60,6 @@ public class MailServiceTest {
         context.setVariable("id", "006");
         String emailContent = templateEngine.process("emailTemplate", context);
 
-        mailService.sendHtmlMail("ityouknow@126.com","主题：这是模板邮件",emailContent);
+        mailService.sendHtmlMail("willdawnup@gmail.com","主题：这是模板邮件",emailContent);
     }
 }
